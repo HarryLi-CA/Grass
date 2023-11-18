@@ -9,6 +9,8 @@ class User {
   static bool loaded = false;
   static int points = 0;
   static int netWorth = 0;
+  static String pastAdvice = "";
+  static String pastAdviceCat = "";
   static List<Transaction> transactions = new List.empty();
   static List<Milestone> milestones = new List.empty();
   static List<Asset> assets = new List.empty();
@@ -17,6 +19,8 @@ class User {
   static Future loadUser() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     points = prefs.getInt("points")??points;
+    pastAdvice = prefs.getString("pastAdvice")??pastAdvice;
+    pastAdviceCat = prefs.getString("pastAdviceCat")??pastAdviceCat;
 
     List<String> categorires = prefs.getStringList("transactionCat")??List.empty();
     List<String> amts = prefs.getStringList("transactionAmt")??List.empty();
