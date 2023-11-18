@@ -23,8 +23,7 @@ class _HomePageState extends State<HomePage> {
           color: Colors.black,
         ),
         Container(
-          padding: const EdgeInsets.all(5.1),
-          //height: 150,
+          padding: const EdgeInsets.all(10.1),
           decoration: BoxDecoration(
             color: Colors.grey.shade800,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -56,7 +55,7 @@ class _HomePageState extends State<HomePage> {
         ),
         Container(
           padding: const EdgeInsets.all(10.1),
-          height: 150,
+          height: 300,
           decoration: BoxDecoration(
             color: Colors.grey.shade800,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -77,19 +76,18 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 5,
+                itemCount: User.milestones.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
                   return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [ Text(
-                    User.milestones[index].toString(), 
+                    (User.milestones[index].category == "Networth")?("Increase " + (User.milestones[index].category??"") + " by \$" + (User.milestones[index].amt.toString())):("Reduce " + (User.milestones[index].category??"") + " by " + (User.milestones[index].amt.toString()) + "%"), 
                     style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.white),) ,
-                    
-                  Text("100xp", 
+                  Spacer(),
+                  Text("100 points", 
                     style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -99,7 +97,7 @@ class _HomePageState extends State<HomePage> {
 
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Placeholder();
+                  return Divider();
                 },
               ),
             ),
