@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grass/models/user.dart';
 
 class RedemptionPage extends StatelessWidget {
   const RedemptionPage({super.key});
@@ -12,29 +13,29 @@ class RedemptionPage extends StatelessWidget {
           Text("Redeemptions"),
           Expanded(
             child: ListView.separated(
-              itemBuilder: (BuildContext context, int index) { return Divider(indent: 10,
+              separatorBuilder: (BuildContext context, int index) { return Divider(indent: 10,
                       endIndent: 10,);},
-              separatorBuilder: (BuildContext context, int index) {
+              itemBuilder: (BuildContext context, int index) {
                 return Container(
                   color: Colors.amber,
                   child: Row(
                     children: [
                       Column(
                         children: [
-                          Text("Hello"),
-                          Text("Hello")
+                          Text(User.redemptions[index].company??""),
+                          Text(User.redemptions[index].description??"")
                           ],
                       ),
                       Spacer(),
                       ElevatedButton(
                         onPressed: (){},
-                        child: Text("HEllo"),
+                        child: Text(User.redemptions[index].cost.toString()+" points"),
                       )
                     ],
                   ),
                 );  
               },
-              itemCount: 5,
+              itemCount: User.redemptions.length,
             ),
           ),
         ],

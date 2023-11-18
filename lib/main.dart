@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(!User.loaded){
-      User.putDummyData();
+      User.putBankData();
     }
     return const MaterialApp(
       title: 'Grass',

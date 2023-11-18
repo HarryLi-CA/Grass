@@ -5,6 +5,7 @@ import 'package:grass/models/redemption.dart';
 import 'package:grass/models/transaction.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+
 class User {
   static bool loaded = false;
   static int points = 0;
@@ -111,7 +112,7 @@ class User {
     prefs.setStringList("redeemCost", cost);    
   }
 
-  static void putDummyData(){
+  static void putBankData(){
     points = 1000;
     transactions = [
       Transaction(category: "Groceries", amt: 2000),
@@ -144,6 +145,18 @@ class User {
       Redemption(company: "Indeed", description: "Get \$50 whem spending \$100", cost: 500),
     ];
     //saveUser();
+    int total = 0;
+    for (var i = 0; i < assets.length; i++) {
+      total += assets[i].amt??0;
+    }
+    for (var i = 0; i < liabilities.length; i++) {
+      total -= liabilities[i].amt??0;
+    }
+    if(total>1000){
+      points+=100;
+      milestones.remove(milestones[0]);
+
+    }
     loaded = true;
   }
 }
