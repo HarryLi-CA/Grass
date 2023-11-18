@@ -22,9 +22,9 @@ class HomePage extends StatelessWidget {
             color: Colors.grey.shade800,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
           ),
-          child: Column(children: [
+          child: Column(children:[
             const Text(
-              'Feedback on your last statement:',
+              'Feedback on your last statement: ',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 17,
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return null;
                 },
-                separatorBuilder: (BuildContext context, int index) {
+                separatorBuilder: (BuildContext context, int index){
                   return Placeholder();
                 },
               ),
@@ -61,16 +61,37 @@ class HomePage extends StatelessWidget {
               'Next Milestones:',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white),
+                  fontSize: 22,
+                  color: Colors.green),
+                  
             ),
+            Divider(
+          height: 10,
+          color: Colors.white,
+           ),
             Expanded(
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return null;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [ Text(
+                    User.milestones[index].toString(), 
+                    style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white),) ,
+                    
+                  Text("100xp", 
+                    style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                  color: Colors.white)
+                  ), ],
+                  );
+
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return Placeholder();
@@ -86,7 +107,7 @@ class HomePage extends StatelessWidget {
         Container(
           //physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(10.1),
-          height: 350,
+          height: 400,
           decoration: BoxDecoration(
             color: Colors.grey.shade800,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -96,11 +117,10 @@ class HomePage extends StatelessWidget {
               'Transactions:',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.white),
+                  fontSize: 25,
+                  color: Colors.green),    
             ),
             Divider(
-              
               height: 10,
             ),
             //Text(User.transactions.length.toString()),
@@ -108,18 +128,23 @@ class HomePage extends StatelessWidget {
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: User.transactions.length,
-                shrinkWrap: true,
+                //shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  Row(
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text( User.transactions[index].category as String),
-                    ]
+                    Text(User.transactions[index].category ?? "",
+                        style: TextStyle(fontSize: 22, color: Colors.white)),
+                        Text(User.transactions[index].amt.toString(), 
+                         style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white, ),)                    
+                  ]
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Placeholder();
+                  return Divider();
                 },
               ),
+
             ),
           ]),
         ),
@@ -136,7 +161,7 @@ class HomePage extends StatelessWidget {
           ),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Text(
-              'Assests:',
+              'Assets:',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

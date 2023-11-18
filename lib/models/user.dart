@@ -142,7 +142,7 @@ class User {
     redemptions = [
       Redemption(company: "Indeed", description: "Get \$50 whem spending \$100", cost: 500),
     ];
-    saveUser();
+    //saveUser();
     loaded = true;
   }
 }

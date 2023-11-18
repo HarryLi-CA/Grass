@@ -6,8 +6,7 @@ class RedemptionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(!User.loaded){
-      User.putDummyData();}
+
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
