@@ -13,14 +13,14 @@ class OpenAiFeedback {
     String transactionPrompt = "";
     for (var i = 0; i < User.transactions.length; i++) {
       Transaction curTransaction = User.transactions[i];
-      transactionPrompt += (curTransaction.category??"") + " \$" + curTransaction.amt.toString() + ", ";
+      transactionPrompt += "${curTransaction.category??""} \$${curTransaction.amt}, ";
     }
-    String prompt = "Give me 1 sentence harsh criticism on my financial history, in a language university students will understand:" + transactionPrompt;
+    String prompt = "Give me 1 sentence harsh criticism on my financial history, in a language university students will understand:$transactionPrompt";
     final request = CompleteText(prompt:prompt,
                 model: TextDavinci3Model(), maxTokens: 200);
     final response = await openAI.onCompletion(request:request);
     String reply = response!.object??"";
-    prompt = "Which category of spending needs to be reduced and by what percentage? Reply with the category and the percentage only, separated by comma, without explanation: "+transactionPrompt;
+    prompt = "Which category of spending needs to be reduced and by what percentage? Reply with the category and the percentage only, separated by comma, without explanation: $transactionPrompt";
     
     final request2 = CompleteText(prompt:prompt,
                 model: TextDavinci3Model(), maxTokens: 200);

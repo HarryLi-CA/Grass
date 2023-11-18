@@ -7,9 +7,15 @@ class PageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 2, // make sure that this matches the amount of pages
-      child: Scaffold( 
+      child: Scaffold(
+      appBar: AppBar(
+        title: SizedBox(
+           height: 45,
+          child: Center(child: Row(children: [Spacer(),Text("Points:"),Text("100"),Spacer()]))
+        ),
+      ),
       body: TabBarView(
         children:[
           HomePage(),
