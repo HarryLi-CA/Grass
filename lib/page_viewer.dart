@@ -22,7 +22,7 @@ class PageViewer extends StatelessWidget {
           RedemptionPage(),
         ]
       ),
-      bottomNavigationBar: TabBar(
+      bottomNavigationBar: TabBar( 
           tabs: [
             Tab(
               icon: Icon(Icons.home)

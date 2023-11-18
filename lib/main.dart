@@ -12,7 +12,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: PageViewer(),
+      title: 'Grass',
+      color: Colors.black,
+
+      home: PageViewer()
+          
+        
+      
     );
   }
 }
