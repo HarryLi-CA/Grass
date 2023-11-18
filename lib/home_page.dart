@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grass/models/liability.dart';
 import 'package:grass/models/user.dart';
 import 'package:grass/services/feedbackGeneration.dart';
 import 'package:grass/models/transaction.dart';
@@ -18,12 +19,12 @@ class _HomePageState extends State<HomePage> {
       color: Colors.black,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Divider(
-          height: 50,
+          height: 20,
           color: Colors.black,
         ),
         Container(
-          padding: const EdgeInsets.all(10.1),
-          height: 150,
+          padding: const EdgeInsets.all(5.1),
+          //height: 150,
           decoration: BoxDecoration(
             color: Colors.grey.shade800,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -42,7 +43,8 @@ class _HomePageState extends State<HomePage> {
               });}),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) { 
                 return Text(
-                  snapshot.data??""
+                  snapshot.data??"", 
+                  style: TextStyle( fontWeight: FontWeight.w300, color: Colors.white),
                 );
                },
             ),
@@ -173,13 +175,22 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 5,
+                itemCount: User.assets.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return null;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [ 
+                      Text(User.assets[index].type.toString(), 
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.white),),
+                      Text(User.assets[index].amt.toString(), 
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),)
+
+                    ],
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Placeholder();
+                  return Divider();
                 },
               ),
             ),
@@ -207,13 +218,23 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: ListView.separated(
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: 5,
+                itemCount: User.liabilities.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return null;
+                   
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [ 
+                      Text(User.liabilities[index].type.toString(),  
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.white),),
+                      Text(User.liabilities[index].amt.toString(), 
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),)
+
+                    ],
+                  );;
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Placeholder();
+                  return Divider();
                 },
               ),
             ),
