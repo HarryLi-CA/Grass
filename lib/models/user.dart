@@ -11,44 +11,44 @@ class User {
   static int netWorth = 0;
   static String pastAdvice = "";
   static String pastAdviceCat = "";
-  static List<Transaction> transactions = new List.empty();
-  static List<Milestone> milestones = new List.empty();
-  static List<Asset> assets = new List.empty();
-  static List<Liability> liabilities = new List.empty();
-  static List<Redemption> redemptions = new List.empty();
+  static List<Transaction> transactions = List.empty(growable: true);
+  static List<Milestone> milestones = List.empty(growable: true);
+  static List<Asset> assets = List.empty(growable: true);
+  static List<Liability> liabilities = List.empty(growable: true);
+  static List<Redemption> redemptions = List.empty(growable: true);
   static Future loadUser() async{
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     points = prefs.getInt("points")??points;
     pastAdvice = prefs.getString("pastAdvice")??pastAdvice;
     pastAdviceCat = prefs.getString("pastAdviceCat")??pastAdviceCat;
 
-    List<String> categorires = prefs.getStringList("transactionCat")??List.empty();
-    List<String> amts = prefs.getStringList("transactionAmt")??List.empty();
+    List<String> categorires = prefs.getStringList("transactionCat")??List.empty(growable: true);
+    List<String> amts = prefs.getStringList("transactionAmt")??List.empty(growable: true);
     for (var i = 0; i < categorires.length; i++) {
       transactions.add(Transaction(category: categorires[i], amt: int.parse(amts[i])));
     }
 
-    categorires = prefs.getStringList("milestoneCat")??List.empty();
-    amts = prefs.getStringList("milestoneAmt")??List.empty();
+    categorires = prefs.getStringList("milestoneCat")??List.empty(growable: true);
+    amts = prefs.getStringList("milestoneAmt")??List.empty(growable: true);
     for (var i = 0; i < categorires.length; i++) {
       milestones.add(Milestone(category: categorires[i], amt: int.parse(amts[i])));
     }
 
-    categorires = prefs.getStringList("assetType")??List.empty();
-    amts = prefs.getStringList("assetAmt")??List.empty();
+    categorires = prefs.getStringList("assetType")??List.empty(growable: true);
+    amts = prefs.getStringList("assetAmt")??List.empty(growable: true);
     for (var i = 0; i < categorires.length; i++) {
       assets.add(Asset(type: categorires[i], amt: int.parse(amts[i])));
     }
 
-    categorires = prefs.getStringList("liabilityCat")??List.empty();
-    amts = prefs.getStringList("liabilityAmt")??List.empty();
+    categorires = prefs.getStringList("liabilityCat")??List.empty(growable: true);
+    amts = prefs.getStringList("liabilityAmt")??List.empty(growable: true);
     for (var i = 0; i < categorires.length; i++) {
       liabilities.add(Liability(type: categorires[i], amt: int.parse(amts[i])));
     }
 
-    List<String> comp = prefs.getStringList("redeemComp")??List.empty();
-    List<String> description = prefs.getStringList("redeemDesc")??List.empty();
-    List<String> cost = prefs.getStringList("redeemCost")??List.empty();
+    List<String> comp = prefs.getStringList("redeemComp")??List.empty(growable: true);
+    List<String> description = prefs.getStringList("redeemDesc")??List.empty(growable: true);
+    List<String> cost = prefs.getStringList("redeemCost")??List.empty(growable: true);
     for (var i = 0; i < categorires.length; i++) {
       redemptions.add(Redemption(company: comp[i], description: description[i], cost: int.parse(cost[i])));
     }
@@ -61,8 +61,8 @@ class User {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt("points", points);
     
-    List<String> categorires = List.empty();
-    List<String> amts =  List.empty();
+    List<String> categorires = List.empty(growable: true);
+    List<String> amts =  List.empty(growable: true);
     for (var i = 0; i < transactions.length; i++) {
       categorires.add((transactions[i]).category??"");
       amts.add((transactions[i].amt??0).toString());
@@ -70,8 +70,8 @@ class User {
     prefs.setStringList("transactionCat", categorires);
     prefs.setStringList("transactionAmt", amts);
 
-    categorires = List.empty();
-    amts =  List.empty();
+    categorires = List.empty(growable: true);
+    amts =  List.empty(growable: true);
     for (var i = 0; i < milestones.length; i++) {
       categorires.add((milestones[i]).category??"");
       amts.add((milestones[i].amt??0).toString());
@@ -79,8 +79,8 @@ class User {
     prefs.setStringList("milestoneCat", categorires);
     prefs.setStringList("milestoneAmt", amts);
 
-    categorires = List.empty();
-    amts =  List.empty();
+    categorires = List.empty(growable: true);
+    amts =  List.empty(growable: true);
     for (var i = 0; i < assets.length; i++) {
       categorires.add((assets[i]).type??"");
       amts.add((assets[i].amt??0).toString());
@@ -88,8 +88,8 @@ class User {
     prefs.setStringList("assetCat", categorires);
     prefs.setStringList("assetAmt", amts);
 
-    categorires = List.empty();
-    amts =  List.empty();
+    categorires = List.empty(growable: true);
+    amts =  List.empty(growable: true);
     for (var i = 0; i < liabilities.length; i++) {
       categorires.add((liabilities[i]).type??"");
       amts.add((liabilities[i].amt??0).toString());
@@ -98,9 +98,9 @@ class User {
     prefs.setStringList("liabilityAmt", amts);
 
 
-    List<String> company = List.empty();
-    List<String> description = List.empty();
-    List<String> cost = List.empty();
+    List<String> company = List.empty(growable: true);
+    List<String> description = List.empty(growable: true);
+    List<String> cost = List.empty(growable: true);
     for (var i = 0; i < redemptions.length; i++) {
       company.add((redemptions[i]).company??"");
       description.add((redemptions[i]).description??"");
