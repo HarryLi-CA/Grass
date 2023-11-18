@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grass/models/user.dart';
 
 class RedemptionPage extends StatelessWidget {
   const RedemptionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(

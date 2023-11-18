@@ -117,8 +117,9 @@ class User {
       Transaction(category: "Groceries", amt: 2000),
       Transaction(category: "Restaurants", amt: 2000),
       Transaction(category: "Entertainment", amt: 2000),
-      Transaction(category: "Rent", amt: 5000),
+      Transaction(category: "Rent", amt: 3000),
       Transaction(category: "Coffee", amt: 500),
+      Transaction(category: "Gambling", amt: 1000),
     ];
     milestones = [
       Milestone(category: "Networth", amt: 1000),

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:grass/models/user.dart';
+import 'package:grass/services/feedbackGeneration.dart';
 import 'package:grass/models/transaction.dart';
 import 'package:grass/models/user.dart';
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -30,18 +36,15 @@ class HomePage extends StatelessWidget {
                   fontSize: 17,
                   color: Colors.white),
             ),
-            Expanded(
-              child: ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 5,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return null;
-                },
-                separatorBuilder: (BuildContext context, int index){
-                  return Placeholder();
-                },
-              ),
+            FutureBuilder(
+              future: OpenAiFeedback.generateFeedback((){setState(() {
+                
+              });}),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) { 
+                return Text(
+                  snapshot.data??""
+                );
+               },
             ),
           ]),
         ),
