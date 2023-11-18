@@ -33,7 +33,7 @@ class OpenAiFeedback {
     String milestone = response2.choices.last.text;
     List<String> milestoneSplit = milestone.split(", ");
     if(milestoneSplit[0]!=User.pastAdviceCat){
-      User.milestones.add(Milestone(category: milestoneSplit[0], amt: int.parse(milestoneSplit[1].split("%")[0])));
+      User.milestones.add(Milestone(category: milestoneSplit[0].substring(2), amt: int.parse(milestoneSplit[1].split("%")[0])));
       stateUpdate();
     }
     User.pastAdvice = reply;
