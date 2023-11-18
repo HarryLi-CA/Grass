@@ -10,6 +10,9 @@ class OpenAiFeedback {
     enableLog: true
   );
   static Future<String> generateFeedback(Function() stateUpdate) async{
+    if(User.pastAdvice != ""){
+      return User.pastAdvice;
+    }
     String transactionPrompt = "";
     for (var i = 0; i < User.transactions.length; i++) {
       Transaction curTransaction = User.transactions[i];
@@ -33,6 +36,7 @@ class OpenAiFeedback {
       User.milestones.add(Milestone(category: milestoneSplit[0], amt: int.parse(milestoneSplit[1].split("%")[0])));
       stateUpdate();
     }
+    User.pastAdvice = reply;
     return reply;
   }
 }
