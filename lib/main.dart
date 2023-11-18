@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:grass/page_viewer.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
