@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:grass/models/transaction.dart';
+import 'package:grass/models/user.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-@override
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-    child: Container(
+        child: Container(
       color: Colors.black,
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Divider(
@@ -24,13 +26,13 @@ class HomePage extends StatelessWidget {
             const Text(
               'Feedback on your last statement:',
               style: TextStyle(
-                  
                   fontWeight: FontWeight.bold,
                   fontSize: 17,
                   color: Colors.white),
             ),
             Expanded(
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -64,6 +66,7 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -81,6 +84,7 @@ class HomePage extends StatelessWidget {
           color: Colors.black,
         ),
         Container(
+          //physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(10.1),
           height: 350,
           decoration: BoxDecoration(
@@ -96,14 +100,21 @@ class HomePage extends StatelessWidget {
                   color: Colors.white),
             ),
             Divider(
-          height: 10,
-        ),
+              
+              height: 10,
+            ),
+            //Text(User.transactions.length.toString()),
             Expanded(
               child: ListView.separated(
-                itemCount: 5,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: User.transactions.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return null;
+                  Row(
+                    children: [
+                    Text( User.transactions[index].category as String),
+                    ]
+                  );
                 },
                 separatorBuilder: (BuildContext context, int index) {
                   return Placeholder();
@@ -127,12 +138,13 @@ class HomePage extends StatelessWidget {
             Text(
               'Assests:',
               style: TextStyle(
-                  fontWeight: FontWeight.bold, 
+                  fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.white),
             ),
             Expanded(
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -160,12 +172,13 @@ class HomePage extends StatelessWidget {
             Text(
               'Liabilities:',
               style: TextStyle(
-                  fontWeight: FontWeight.bold, 
+                  fontWeight: FontWeight.bold,
                   fontSize: 18,
                   color: Colors.red.shade900),
             ),
             Expanded(
               child: ListView.separated(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 5,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
@@ -183,7 +196,6 @@ class HomePage extends StatelessWidget {
           color: Colors.black,
         ),
       ]),
-    )
-    );
+    ));
   }
 }
